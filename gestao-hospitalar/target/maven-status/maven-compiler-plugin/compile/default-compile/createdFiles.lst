@@ -34,6 +34,7 @@ com\example\hospitalmanagement\model\Exam.class
 com\example\hospitalmanagement\model\Prescription.class
 com\example\hospitalmanagement\repository\RoomRepository.class
 com\example\hospitalmanagement\service\ExamService.class
+com\example\hospitalmanagement\config\DataSeeder.class
 com\example\hospitalmanagement\repository\AppointmentRepository.class
 com\example\hospitalmanagement\service\EmployeeService.class
 com\example\hospitalmanagement\controller\AppointmentController.class
