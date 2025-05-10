@@ -1,0 +1,90 @@
+JDL Sistema de Gestão Hospitalar
+
+enum Sexo {
+  MASCULINO,
+  FEMININO,
+  OUTRO
+}
+
+enum EstadoConsulta {
+  AGENDADA,
+  EM_ANDAMENTO,
+  CONCLUIDA,
+  CANCELADA
+}
+
+enum EspecialidadeTipo {
+  MEDICINA_GERAL,
+  CARDIOLOGIA,
+  PEDIATRIA,
+  DERMATOLOGIA,
+  ORTOPEDIA,
+  PSIQUIATRIA
+}
+
+entity Paciente {
+  nome String required
+  dataNascimento LocalDate required
+  sexo Sexo required
+  telefone String
+  email String
+  nif String
+  morada String
+  numeroUtente String required
+}
+
+entity Medico {
+  nome String required
+  crm String required
+  especialidade EspecialidadeTipo required
+  telefone String
+  email String
+}
+
+entity Consulta {
+  dataHora ZonedDateTime required
+  estado EstadoConsulta required
+  observacoes TextBlob
+}
+
+entity Sala {
+  nome String required
+  piso Integer
+  capacidade Integer
+  equipamento String
+}
+
+entity Receita {
+  medicamentos TextBlob required
+  instrucoes TextBlob
+}
+
+entity Internamento {
+  dataEntrada ZonedDateTime required
+  dataSaida ZonedDateTime
+  observacoes TextBlob
+}
+
+entity Funcionario {
+  nome String required
+  funcao String required
+  telefone String
+  email String
+}
+
+entity Exame {
+  tipo String required
+  resultado TextBlob
+  dataExame ZonedDateTime required
+}
+
+relationship ManyToOne {
+  Consulta{paciente} to Paciente
+  Consulta{medico} to Medico
+  Consulta{sala} to Sala
+  Receita{consulta} to Consulta
+  Internamento{paciente} to Paciente
+  Internamento{sala} to Sala
+  Exame{consulta} to Consulta
+  Exame{medico} to Medico
+}
